@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ToastAndroid, Button, Alert } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
-export default function App() {
+const MyApp = () => {
+  const [pw, SetPw] = useState('');
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Text>User Type:</Text>
+      <RNPickerSelect
+        onValueChange={(value) => console.log(value)}
+        items={[
+          { label: 'Admin', value: 'Admin' },
+          { label: 'Guest', value: 'Guest' },
+        ]}
+      />
+      <Text>Password:</Text>
+      <TextInput style={{borderWidth: 1}} onChangeText={(text)=>SetPw(text)} />
+      
+      <Button title='LOG IN' onPress={()=>Alert.alert(pw)}></Button>
+      <TouchableOpacity onPress={() => ToastAndroid.show("You pressed the text!", ToastAndroid.SHORT)}>
+        <Text>LOG IN</Text>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MyApp;
