@@ -14,6 +14,8 @@ const MyApp = () => {
           { label: 'Guest', value: 'Guest' },
         ]}
       />
+      <Text>Username:</Text>
+      <TextInput style={{borderWidth: 1}} />
       <Text>Password:</Text>
       <TextInput style={{borderWidth: 1}} onChangeText={(text)=>SetPw(text)} />
       
